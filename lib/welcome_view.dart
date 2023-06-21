@@ -75,7 +75,7 @@ class OtherPage extends StatelessWidget {
         title: const Text('Inlog Pagina'),
       ),
       body: const Center(
-        child: Text('gegergerge'),
+        child: Text(''),
       ),
     );
   }
