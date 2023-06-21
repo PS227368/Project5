@@ -38,7 +38,7 @@ class _WelcomeViewState extends State<WelcomeView> {
                 Padding(
                   padding: const EdgeInsets.only(top: 70.0),
                   child: Text(
-                    "SPORT",
+                    "MOVE",
                     style: GoogleFonts.bebasNeue(
                       fontSize: 32,
                       color: const Color(0xFF40D876),
