@@ -40,12 +40,12 @@ class _LoginState extends State<Login> {
             children: [
               const SizedBox(height: 150),
               Text(
-                "Welcome back",
+                "Welkom terug",
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
               const SizedBox(height: 10),
               Text(
-                "Login to your account",
+                "Log in op jouw account",
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               const SizedBox(height: 60),
@@ -53,7 +53,7 @@ class _LoginState extends State<Login> {
                 controller: _controllerUsername,
                 keyboardType: TextInputType.name,
                 decoration: InputDecoration(
-                  labelText: "Username",
+                  labelText: "Gebruikersnaam",
                   prefixIcon: const Icon(Icons.person_outline),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -65,9 +65,9 @@ class _LoginState extends State<Login> {
                 onEditingComplete: () => _focusNodePassword.requestFocus(),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
-                    return "Please enter username.";
+                    return "Vul een gebruikersnaam in.";
                   } else if (!_boxAccounts.containsKey(value)) {
-                    return "Username is not registered.";
+                    return "Gebruikersnaam is niet geregistreerd.";
                   }
 
                   return null;
@@ -80,7 +80,7 @@ class _LoginState extends State<Login> {
                 obscureText: _obscurePassword,
                 keyboardType: TextInputType.visiblePassword,
                 decoration: InputDecoration(
-                  labelText: "Password",
+                  labelText: "Wachtwoord",
                   prefixIcon: const Icon(Icons.password_outlined),
                   suffixIcon: IconButton(
                       onPressed: () {
@@ -100,10 +100,10 @@ class _LoginState extends State<Login> {
                 ),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
-                    return "Please enter password.";
+                    return "Vul wachtwoord in.";
                   } else if (value !=
                       _boxAccounts.get(_controllerUsername.text)) {
-                    return "Wrong password.";
+                    return "Verkeerd password.";
                   }
 
                   return null;
@@ -122,7 +122,8 @@ class _LoginState extends State<Login> {
                     onPressed: () {
                       if (_formKey.currentState?.validate() ?? false) {
                         _boxLogin.put("loginStatus", true);
-                        _boxLogin.put("userName", _controllerUsername.text);
+                        _boxLogin.put(
+                            "GebruikersNaam", _controllerUsername.text);
 
                         Navigator.pushReplacement(
                           context,
@@ -139,7 +140,7 @@ class _LoginState extends State<Login> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Don't have an account?"),
+                      const Text("Heb je geen account?"),
                       TextButton(
                         onPressed: () {
                           _formKey.currentState?.reset();
@@ -153,7 +154,7 @@ class _LoginState extends State<Login> {
                             ),
                           );
                         },
-                        child: const Text("Signup"),
+                        child: const Text("Registreren"),
                       ),
                     ],
                   ),
