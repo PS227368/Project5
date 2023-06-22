@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'welcome_view.dart';
+import '../welcome_view.dart';
 import 'register.dart';
 
 class Login extends StatefulWidget {
@@ -40,12 +40,12 @@ class _LoginState extends State<Login> {
             children: [
               const SizedBox(height: 150),
               Text(
-                "Welkom terug",
+                "Welcome back",
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
               const SizedBox(height: 10),
               Text(
-                "Log in op jouw account",
+                "Login to your account",
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               const SizedBox(height: 60),
@@ -53,7 +53,7 @@ class _LoginState extends State<Login> {
                 controller: _controllerUsername,
                 keyboardType: TextInputType.name,
                 decoration: InputDecoration(
-                  labelText: "Gebruikersnaam",
+                  labelText: "Username",
                   prefixIcon: const Icon(Icons.person_outline),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -65,9 +65,9 @@ class _LoginState extends State<Login> {
                 onEditingComplete: () => _focusNodePassword.requestFocus(),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
-                    return "Vul een gebruikersnaam in.";
+                    return "Please enter username.";
                   } else if (!_boxAccounts.containsKey(value)) {
-                    return "Gebruikersnaam is niet geregistreerd.";
+                    return "Username is not registered.";
                   }
 
                   return null;
@@ -80,7 +80,7 @@ class _LoginState extends State<Login> {
                 obscureText: _obscurePassword,
                 keyboardType: TextInputType.visiblePassword,
                 decoration: InputDecoration(
-                  labelText: "Wachtwoord",
+                  labelText: "Password",
                   prefixIcon: const Icon(Icons.password_outlined),
                   suffixIcon: IconButton(
                       onPressed: () {
@@ -100,10 +100,10 @@ class _LoginState extends State<Login> {
                 ),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
-                    return "Vul wachtwoord in.";
+                    return "Please enter password.";
                   } else if (value !=
                       _boxAccounts.get(_controllerUsername.text)) {
-                    return "Verkeerd password.";
+                    return "Wrong password.";
                   }
 
                   return null;
@@ -122,8 +122,7 @@ class _LoginState extends State<Login> {
                     onPressed: () {
                       if (_formKey.currentState?.validate() ?? false) {
                         _boxLogin.put("loginStatus", true);
-                        _boxLogin.put(
-                            "GebruikersNaam", _controllerUsername.text);
+                        _boxLogin.put("userName", _controllerUsername.text);
 
                         Navigator.pushReplacement(
                           context,
@@ -140,7 +139,7 @@ class _LoginState extends State<Login> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Heb je geen account?"),
+                      const Text("Don't have an account?"),
                       TextButton(
                         onPressed: () {
                           _formKey.currentState?.reset();
@@ -154,7 +153,7 @@ class _LoginState extends State<Login> {
                             ),
                           );
                         },
-                        child: const Text("Registreren"),
+                        child: const Text("Signup"),
                       ),
                     ],
                   ),
