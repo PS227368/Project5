@@ -54,32 +54,6 @@ class _WelcomeViewState extends State<WelcomeView> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Navigeer naar de andere pagina wanneer de knop wordt ingedrukt
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const OtherPage()),
-          );
-        },
-        child: const Icon(Icons.arrow_forward),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-    );
-  }
-}
-
-class OtherPage extends StatelessWidget {
-  const OtherPage({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Inlog Pagina'),
-      ),
-      body: const Center(
-        child: Text(''),
-      ),
     );
   }
 }

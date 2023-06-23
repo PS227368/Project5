@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:my_app/welcome_view.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() => runApp(const MyApp1());
 
@@ -23,6 +23,27 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int currentIndex = 0;
+  // final screens = const [
+  //   Center(
+  //     child: Text(
+  //       'Home',
+  //       style: TextStyle(fontSize: 72),
+  //     ),
+  //   ),
+  //   Center(
+  //     child: Text(
+  //       'Oefeningen',
+  //       style: TextStyle(fontSize: 72),
+  //     ),
+  //   ),
+  //   Center(
+  //     child: Text(
+  //       'Inloggen',
+  //       style: TextStyle(fontSize: 72),
+  //     ),
+  //   ),
+  // ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,6 +53,20 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Home page'),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          currentIndex: currentIndex,
+          onTap: (int index) {
+            setState(() {
+              currentIndex = index;
+              print(index);
+              if (index > 0) {
+                return;
+              } else if (currentIndex == 0) {
+                MaterialPageRoute(builder: (context) => const MyApp1());
+              } else if (currentIndex == 1) {
+                MaterialPageRoute(builder: (context) => const OefeningenPage());
+              }
+            });
+          },
           items: const [
             BottomNavigationBarItem(
               label: 'Home',
@@ -46,12 +81,60 @@ class _MyAppState extends State<MyApp> {
               icon: Icon(Icons.login),
             ),
           ],
-          currentIndex: currentIndex,
-          onTap: (int index) {
-            setState(() {
-              currentIndex = index;
-            });
-          },
+        ),
+      ),
+    );
+  }
+}
+
+class OefeningenPage extends StatefulWidget {
+  const OefeningenPage({super.key});
+
+  @override
+  State<OefeningenPage> createState() => OefeningenPageState();
+}
+
+class OefeningenPageState extends State<OefeningenPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("./images/homescreen.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 70.0),
+                  child: Text(
+                    "SUMMA  ",
+                    style: GoogleFonts.bebasNeue(
+                      fontSize: 32,
+                      color: Colors.white,
+                      letterSpacing: 1.8,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 70.0),
+                  child: Text(
+                    "MOVE",
+                    style: GoogleFonts.bebasNeue(
+                      fontSize: 32,
+                      color: const Color(0xFF40D876),
+                      letterSpacing: 1.8,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
