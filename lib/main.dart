@@ -1,28 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_app/pages/welcome_view.dart';
+
+import 'package:my_app/pages/inloggen.dart';
+import 'package:my_app/pages/oefeningen.dart';
 
 void main() => runApp(const MyApp1());
 
 class MyApp1 extends StatelessWidget {
   const MyApp1({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyApp(),
-    );
-  }
-}
-
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -36,10 +21,10 @@ class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => OefeningenPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class OefeningenPageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -54,10 +39,15 @@ class OefeningenPageState extends State<HomePage> {
             if (index < 0) {
               return;
             } else if (currentIndex == 1) {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const WelcomeView()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const OefeningenPage()));
             } else if (currentIndex == 2) {
-              MaterialPageRoute(builder: (context) => const HomePage());
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const InloggenPage()));
             }
           });
         },
