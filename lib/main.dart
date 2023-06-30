@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_app/pages/welcome_view.dart';
 
 void main() => runApp(const MyApp1());
 
@@ -22,86 +23,63 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int currentIndex = 0;
-  // final screens = const [
-  //   Center(
-  //     child: Text(
-  //       'Home',
-  //       style: TextStyle(fontSize: 72),
-  //     ),
-  //   ),
-  //   Center(
-  //     child: Text(
-  //       'Oefeningen',
-  //       style: TextStyle(fontSize: 72),
-  //     ),
-  //   ),
-  //   Center(
-  //     child: Text(
-  //       'Inloggen',
-  //       style: TextStyle(fontSize: 72),
-  //     ),
-  //   ),
-  // ];
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Home page'),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: currentIndex,
-          onTap: (int index) {
-            setState(() {
-              currentIndex = index;
-              print(index);
-              if (index > 0) {
-                return;
-              } else if (currentIndex == 0) {
-                MaterialPageRoute(builder: (context) => const MyApp1());
-              } else if (currentIndex == 1) {
-                MaterialPageRoute(builder: (context) => const OefeningenPage());
-              }
-            });
-          },
-          items: const [
-            BottomNavigationBarItem(
-              label: 'Home',
-              icon: Icon(Icons.home),
-            ),
-            BottomNavigationBarItem(
-              label: 'Oefeningen',
-              icon: Icon(Icons.fitness_center),
-            ),
-            BottomNavigationBarItem(
-              label: 'Inloggen',
-              icon: Icon(Icons.login),
-            ),
-          ],
-        ),
-      ),
+      home: HomePage(),
     );
   }
 }
 
-class OefeningenPage extends StatefulWidget {
-  const OefeningenPage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<OefeningenPage> createState() => OefeningenPageState();
+  State<HomePage> createState() => OefeningenPageState();
 }
 
-class OefeningenPageState extends State<OefeningenPage> {
+class OefeningenPageState extends State<HomePage> {
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.black,
+        unselectedItemColor: Colors.white,
+        currentIndex: currentIndex,
+        onTap: (int index) {
+          setState(() {
+            currentIndex = index;
+            if (index < 0) {
+              return;
+            } else if (currentIndex == 1) {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const WelcomeView()));
+            } else if (currentIndex == 2) {
+              MaterialPageRoute(builder: (context) => const HomePage());
+            }
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            label: 'Home',
+            icon: Icon(Icons.home),
+          ),
+          BottomNavigationBarItem(
+            label: 'Oefeningen',
+            icon: Icon(Icons.fitness_center),
+          ),
+          BottomNavigationBarItem(
+            label: 'Inloggen',
+            icon: Icon(Icons.login),
+          ),
+        ],
+      ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("./images/homescreen.jpg"),
+            image: AssetImage("images/homescreen.jpg"),
             fit: BoxFit.cover,
           ),
         ),
