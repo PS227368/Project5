@@ -44,10 +44,8 @@ class _HomePageState extends State<HomePage> {
                   MaterialPageRoute(
                       builder: (context) => const OefeningenPage()));
             } else if (currentIndex == 2) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const InloggenPage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Login()));
             }
           });
         },
