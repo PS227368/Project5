@@ -98,7 +98,7 @@ class _OefeningenPageState extends State<OefeningenPage> {
   }
 
   void fetchOefeningen() async {
-    final url = 'http://10.59.176.104:8000/api/oefeningen';
+    final url = 'http://10.59.178.38:8000/api/oefeningen';
     final uri = Uri.parse(url);
     try {
       final response = await http.get(uri);
